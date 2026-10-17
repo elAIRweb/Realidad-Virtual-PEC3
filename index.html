@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sky - Juguetes - PEC 3 - Realidad Virtual</title>
+    <meta name="description" content="Sky">
+    <script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.0.0/dist/aframe-environment-component.min.js">
+        document.querySelector('a-link').navigate('infinito.html');
+    </script>
+  </head>
+  <body>
+
+    <a-scene>
+      
+      <a-text value="Ya es hora de ir al infinito..." 
+        color="#FFFFFF" 
+        position="-4 3 -5.5"
+        rotation="0 10 0"
+        scale="2.5 2.5 2.5">
+      </a-text>
+       
+      <a-assets>
+
+        <!-- Defino los asset para el modelo de Buzz-->
+        <a-asset-item id="buzz" src="assets/buzz_lightyear_toy_story.obj"></a-asset-item>
+        <a-asset-item id="buzz-mtl" src="assets/buzz_lightyear_toy_story.mtl"></a-asset-item>
+
+        <!-- Defino imagen para el enlace a otra escena-->
+        <img id="infinito" src="assets/infinito.JPG">
+
+        <!-- Defino imagen para el fondo panorámico 360º-->
+        <img id="fondo-imagen" src="assets/juguetes360.jpg">
+
+      </a-assets> 
+
+      <!-- Defino el fondo panorámico 360º de la escena -->
+      <a-sky id="image-360" radius="10" src="#fondo-imagen"></a-sky>
+
+      <!-- Posiciono el modelo de buzz con una animación que hace que se desplace arriba y abajo en su posición-->
+      <a-entity obj-model="obj: #buzz; mtl: #buzz-mtl"
+            position="-1.5 0.5 -9"
+            rotation="0 10 0"
+            scale="2 2 2">
+            <a-animation attribute="position" from="-1.5 0.5 -9" to="-1.5 0.6 -9" direction="alternate" dur="1000" repeat="indefinite"></a-animation>
+      </a-entity>
+
+      <!-- Añado un enlace a otro escenario, con un título-->
+      <a-link href="infinito.html" title="Ir al infinito" image="#infinito" peekMode="false" position="5 2 -6"></a-link> 
+
+      <a-camera rotation="0 90 0">
+          <a-cursor color="#66ffff"></a-cursor>
+      </a-camera>
+        
+    </a-scene>
+  </body>
+</html>

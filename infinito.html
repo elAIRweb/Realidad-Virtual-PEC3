@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Videosphere - Infinito - PEC 3 - Realidad Virtual</title>
+    <meta name="description" content="Videosphere">
+    <script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.0.0/dist/aframe-environment-component.min.js">
+        document.querySelector('a-link').navigate('index.html');
+    </script>
+  </head>
+  <body>
+
+    <a-scene >
+
+      <a-text value="Y mas alla!" 
+        color="#FFFFFF" 
+        position="-2.5 -1 -5.5"
+        rotation="0 0 0"
+        scale="2.5 2.5 2.5">
+      </a-text>
+
+      <a-assets>
+        <!-- Defino los asset para el modelo de Buzz -->
+        <a-asset-item id="buzz" src="assets/buzz_lightyear_toy_story.obj"></a-asset-item>
+        <a-asset-item id="buzz-mtl" src="assets/buzz_lightyear_toy_story.mtl"></a-asset-item>
+
+        <!-- Defino imagen para el enlace a otra escena -->
+        <img id="juguetes" src="assets/juguetes.jpg">
+
+        <!-- Defino el video para el fondo panorámico 360º -->
+        <video id="infinito" autoplay loop="true" src="assets/espacio.mp4">
+
+      </a-assets>
+
+      <!-- Defino el fondo panorámico 360º mediante el vídeo -->
+      <a-videosphere src="#infinito"></a-videosphere>
+      
+      <!-- Posiciono el modelo de buzz y le aplico dos animaciones-->
+      <a-entity obj-model="obj: #buzz; mtl: #buzz-mtl"
+          position="-1.5 0.5 -9"
+          rotation="0 10 0"
+          scale="2 2 2">
+          
+        <!-- Esta animación hace que se desplace arriba y abajo en su posición -->
+        <a-animation attribute="position"
+          from="-1.5 0.5 -9"
+          to="-1.5 5 -9"
+          direction="alternate"
+          dur="1000"
+          repeat="indefinite">
+        </a-animation>
+
+        <!-- Esta animación hace que se balancee mientras sube y baja -->
+        <a-animation attribute="rotation"
+          from="-10 10 -10"
+          to="10 10 10"
+          direction="alternate"
+          dur="800"
+          repeat="indefinite">
+        </a-animation>
+
+      </a-entity>
+
+      <!-- Añado un enlace a otro escenario, con un título-->
+      <a-link href="index.html" title="Volver al mundo de los juguetes" image="#juguetes" peekMode="false" position="4 2 -6"></a-link> 
+
+      <a-camera>
+        <a-cursor color="#ff66ff"></a-cursor>
+      </a-camera>
+
+    </a-scene>
+  </body>
+</html>
